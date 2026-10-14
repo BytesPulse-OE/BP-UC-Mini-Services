@@ -1,0 +1,164 @@
+:root {
+    --bg-dark: #050814;
+    --bg-light: #e8ecf5;
+    --text-dark: #ffffff;
+    --text-light: #111111;
+    --accent: #ff7b00;
+}
+
+* { box-sizing: border-box; }
+html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #151b30, var(--bg-dark) 70%);
+    color: var(--text-dark);
+    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+body.light {
+    background: radial-gradient(circle at top, #e8ecf5, var(--bg-light) 70%);
+    color: var(--text-light);
+}
+#starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    z-index: 0;
+    pointer-events: none;
+}
+.aurora {
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.25), transparent 60%), radial-gradient(circle at 70% 60%, rgba(120,0,255,0.25), transparent 60%), radial-gradient(circle at 50% 80%, rgba(0,150,255,0.25), transparent 70%);
+    filter: blur(80px);
+    animation: auroraMove 18s ease-in-out infinite alternate;
+    z-index: 1;
+    pointer-events: none;
+}
+@keyframes auroraMove {
+    0% { transform: translate(0,0) scale(1); opacity: 0.55; }
+    50% { transform: translate(40px, -30px) scale(1.1); opacity: 0.75; }
+    100% { transform: translate(-30px, 20px) scale(1); opacity: 0.55; }
+}
+.controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+.btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: rgba(255,255,255,0.08);
+    color: inherit;
+    backdrop-filter: blur(6px);
+    transition: 0.3s;
+}
+body.light .btn { background: rgba(0,0,0,0.06); }
+.btn:hover { background: rgba(255,255,255,0.22); }
+body.light .btn:hover { background: rgba(0,0,0,0.12); }
+.container {
+    text-align: center;
+    z-index: 10;
+    animation: fadeIn 1.5s ease forwards;
+    padding: 20px;
+    width: min(700px, 100%);
+    max-width: 700px;
+    max-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+img.logo {
+    width: 280px;
+    max-width: 85%;
+    margin-bottom: 25px;
+    animation: logoGlow 4s ease-in-out infinite;
+}
+@keyframes logoGlow {
+    0% { filter: drop-shadow(0 0 4px rgba(0, 200, 255, 0.4)); }
+    50% { filter: drop-shadow(0 0 14px rgba(0, 200, 255, 0.9)); }
+    100% { filter: drop-shadow(0 0 4px rgba(0, 200, 255, 0.4)); }
+}
+h1 { font-size: 2.6rem; margin-bottom: 10px; letter-spacing: 1px; font-weight: 600; }
+p { font-size: 1.15rem; opacity: 0.9; }
+#countdown { font-size: 1.6rem; margin-top: 20px; font-weight: 600; color: var(--accent); }
+.contact { margin-top: 25px; font-size: 1.05rem; opacity: 0.9; line-height: 1.6; }
+.contact a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+.pulse-wrapper { margin: 40px auto 0; width: 100%; max-width: 700px; height: 140px; position: relative; }
+canvas#pulseCanvas { width: 100%; height: 100%; display: block; }
+footer { position: absolute; bottom: 20px; width: 100%; text-align: center; font-size: 0.9rem; opacity: 0.55; z-index: 5; padding: 0 16px; }
+@media (max-width: 1024px) {
+    .controls { top: max(14px, env(safe-area-inset-top)); right: 14px; gap: 8px; }
+    .btn { padding: 7px 12px; font-size: 0.88rem; }
+    .container { width: min(560px, 92vw); max-width: 560px; padding: 74px 18px 70px; gap: 0; justify-content: center; }
+    img.logo { width: clamp(150px, 20vw, 185px); max-width: 60%; margin-top: 18px; margin-bottom: 12px; }
+    h1 { font-size: clamp(1.55rem, 3vw, 1.9rem); line-height: 1.15; margin: 0 0 8px; max-width: 16ch; }
+    p, .contact { width: min(430px, 82vw); max-width: 430px; font-size: 0.92rem; line-height: 1.45; margin-left: auto; margin-right: auto; }
+    .contact { margin-top: 16px; }
+    #countdown { font-size: 1.1rem; margin-top: 14px; line-height: 1.35; width: min(420px, 82vw); }
+    .pulse-wrapper { width: min(420px, 82vw); max-width: 420px; height: 72px; margin-top: 14px; }
+    footer { font-size: 0.74rem; bottom: 12px; }
+}
+@media (max-width: 1024px) and (max-height: 900px), (max-width: 900px) and (orientation: landscape) {
+    .container { padding-top: 66px; padding-bottom: 60px; }
+    img.logo { width: clamp(132px, 18vw, 160px); margin-top: 10px; margin-bottom: 10px; }
+    h1 { font-size: clamp(1.35rem, 2.6vw, 1.65rem); margin-bottom: 6px; }
+    p, .contact { width: min(390px, 78vw); max-width: 390px; font-size: 0.84rem; line-height: 1.35; }
+    .contact { margin-top: 12px; }
+    #countdown { font-size: 0.98rem; margin-top: 10px; width: min(390px, 78vw); }
+    .pulse-wrapper { width: min(360px, 76vw); max-width: 360px; height: 56px; margin-top: 10px; }
+    footer { font-size: 0.68rem; bottom: 8px; }
+}
+@media (max-width: 768px) {
+    .controls { top: max(14px, env(safe-area-inset-top)); right: 14px; gap: 8px; }
+    .btn { padding: 7px 12px; font-size: 0.9rem; }
+    .container { width: 100%; padding: 88px 18px 90px; transform: none; max-width: 100%; }
+    img.logo { width: clamp(180px, 48vw, 220px); max-width: 78%; margin-top: 30px; margin-bottom: 16px; }
+    h1 { font-size: clamp(1.7rem, 6vw, 2rem); margin-bottom: 8px; }
+    p { font-size: 0.98rem; line-height: 1.5; margin: 0 auto; width: min(100%, 34ch); }
+    .contact { margin-top: 20px; font-size: 0.95rem; line-height: 1.5; width: min(100%, 36ch); }
+    #countdown { font-size: clamp(1.05rem, 4.7vw, 1.3rem); margin-top: 16px; width: min(100%, 36ch); }
+    .pulse-wrapper { max-width: 100%; height: 90px; margin-top: 22px; }
+    footer { font-size: 0.72rem; bottom: 10px; }
+}
+@media (max-width: 420px) {
+    .controls { left: 12px; right: 12px; justify-content: flex-end; }
+    .btn { padding: 6px 10px; font-size: 0.82rem; }
+    .container { padding-top: 96px; padding-bottom: 80px; }
+    img.logo { margin-top: 36px; width: clamp(165px, 50vw, 190px); }
+    p, .contact { font-size: 0.9rem; }
+    .pulse-wrapper { height: 74px; margin-top: 18px; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

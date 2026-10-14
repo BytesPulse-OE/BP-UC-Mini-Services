@@ -1,0 +1,36 @@
+.bp-ucms-wrap .bp-ucms-card {
+    background: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 0 20px;
+}
+
+.bp-ucms-media-field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.bp-ucms-media-preview {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.bp-ucms-media-preview img {
+    max-width: 180px;
+    max-height: 80px;
+    border: 1px solid #dcdcde;
+    background: #f6f7f7;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+
+.bp-ucms-log-viewer {
+    width: 100%;
+    min-height: 220px;
+    font-family: Consolas, Monaco, monospace;
+    white-space: pre-wrap;
+}
